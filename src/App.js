@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
+import Form from "./components/Form";
 
 function App() {
   return (
-    <div>
-      <h1>hi</h1>
-    </div>
+    <Fragment>
+      <Form />
+    </Fragment>
   );
 }
 

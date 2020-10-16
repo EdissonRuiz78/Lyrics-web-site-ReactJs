@@ -20,25 +20,8 @@ legend {
   width: auto;
   margin: 0;
   margin-bottom: 40px;
+  font-size: 2rem;
   font-family: "Work Sans", sans-serif;
-}
-
-legend::before {
-  position: absolute;
-  content: "";
-  width: calc(120%);
-  display: block;
-  background-color: #eb6864;
-  height: 40px;
-  z-index: -1;
-  left: -30px;
-  right: -30px;
-  transform: rotate(-1deg);
-  transition: transform 0.3s ease;
-}
-
-legend:hover::before {
-  transform: rotate(2deg);
 }
 
 form.card {
