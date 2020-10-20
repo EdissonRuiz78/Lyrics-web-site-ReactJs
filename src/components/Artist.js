@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Artist = ({ bioInfo }) => {
   const {
@@ -62,6 +63,10 @@ const Artist = ({ bioInfo }) => {
       </div>
     </div>
   );
+};
+
+Artist.propTypes = {
+  bioInfo: PropTypes.object.isRequired,
 };
 
 export default Artist;

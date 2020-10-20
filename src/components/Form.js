@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Error from "./Error";
 
 const Form = ({ updateLyric }) => {
@@ -69,6 +70,10 @@ const Form = ({ updateLyric }) => {
       </fieldset>
     </form>
   );
+};
+
+Form.propTypes = {
+  updateLyric: PropTypes.func.isRequired,
 };
 
 export default Form;

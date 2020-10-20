@@ -3,11 +3,13 @@ import axios from "axios";
 import Form from "./components/Form";
 import Song from "./components/Song";
 import Artist from "./components/Artist";
+import Error from "./components/Error";
 
 function App() {
   const [lyric, updateLyric] = useState({});
   const [song, updateSong] = useState("");
   const [bioInfo, updateBioInfo] = useState({});
+  const [errorLyric, updateErrorLyric] = useState(false);
 
   useEffect(() => {
     if (Object.keys(lyric).length === 0) {
@@ -22,8 +24,16 @@ function App() {
         axios.get(urlLyric),
         axios.get(urlArtist),
       ]);
-      updateSong(infoLyric.data.lyrics);
-      updateBioInfo(infoArtist.data.artists[0]);
+      if (
+        infoLyric.data.lyrics === "" ||
+        Object.keys(infoArtist).length === 0
+      ) {
+        updateErrorLyric(true);
+      } else {
+        updateErrorLyric(false);
+        updateSong(infoLyric.data.lyrics);
+        updateBioInfo(infoArtist.data.artists[0]);
+      }
     };
 
     getDataLyric();
@@ -32,14 +42,18 @@ function App() {
   return (
     <div className="container bg-dark">
       <Form updateLyric={updateLyric} />
-      <div className="row p-4">
-        <div className="col-md-6">
-          <Artist bioInfo={bioInfo} />
+      {errorLyric ? (
+        <Error message="No results found" />
+      ) : (
+        <div className="row p-4">
+          <div className="col-md-6">
+            <Artist bioInfo={bioInfo} />
+          </div>
+          <div className="col-md-6">
+            <Song song={song} />
+          </div>
         </div>
-        <div className="col-md-6">
-          <Song song={song} />
-        </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Song = ({ song }) => {
   if (song === "") {
@@ -15,6 +16,10 @@ const Song = ({ song }) => {
       </div>
     </div>
   );
+};
+
+Song.propTypes = {
+  song: PropTypes.string.isRequired,
 };
 
 export default Song;
